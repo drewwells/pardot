@@ -1,4 +1,4 @@
-var seed = [ 0.0, 1.0 ];
+var seed = [ 0, 1 ];
 
 function fibLoop( n ){
 
