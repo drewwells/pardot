@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8" />
     <title>Fibonacci</title>
-    <script type="text/javascript" src="src/fibonacci.js"></script>
+    <script type='text/javascript' src='src/fibonacci.js'></script>
     <link href='http://fonts.googleapis.com/css?family=Short+Stack' rel='stylesheet' type='text/css'>
+    <link href='lib/sh_matlab.min.css' rel='stylesheet' type='text/css'>
     <style type=text/css>
         html {
           font-family: "Short Stack", cursive;
@@ -13,17 +14,46 @@
         h1 {
           margin-bottom: 0;
         }
+        pre{ 
+          font-family: monospace; 
+          line-height: 1em; 
+          display: none; 
+          border-radius: 8px;
+          border: 2px dotted gray;
+          width: 40em;
+          padding: 1em;
+          font-size: 1.1em;
+        }
+
     </style>
 </head>
 <body>
     <h1>Fibonacci Sequence</h1>
     <a href="test/">Run Tests</a>
-    <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Wikipedia Explanation</a><br/>
+    <a href="http://en.wikipedia.org/wiki/Fibonacci_number">Wikipedia Explanation</a>
+    <a class="source" href="src/fibonacci.js">View source</a><br/>
     <label>Enter a number: </label>
     <input type="number" />
+    <pre id="source" class="sh_javascript"></pre>
     <div id="results">
         
     </div>
 </body>
 <script type=text/javascript src=main.js></script>
+<script type=text/javascript src=lib/sh_main.min.js></script>
+<script>
+    var req = new XMLHttpRequest(), 
+        src = document.getElementById('source');
+    req.open('GET', 'src/fibonacci.js', false);
+    req.send(null);
+    if( req.status == 200 ){
+      src.innerHTML = req.responseText;
+      sh_highlightDocument();
+    }
+    document.getElementsByClassName('source')[0].onclick = function(){
+
+      src.style.display = src.style.display !== 'block' ? 'block' : 'none';
+      return false;
+    }
+</script> 
 </html>
